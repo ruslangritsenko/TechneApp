@@ -1,0 +1,16 @@
+<ion-content layout="column" layout-align="center center" flex>
+  <div class="md-dialog-content" layout="column" layout-align="center center">
+     <img [src]="contentUrl" *ngIf="contentUrl" /> 
+     <div [innerHTML]="content"></div>
+  </div>
+  <div class="start-section" layout="column">
+    <ion-row>
+      <ion-col col-6>
+        <button class="md-raised md-secondary" style="color: white" (click)="submit()">Return to Profile</button>
+      </ion-col>
+      <ion-col col-6>
+        <button class="md-raised md-primary" style="color: white" (click)="cancel()">Continue Training</button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

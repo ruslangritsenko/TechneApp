@@ -1,0 +1,71 @@
+page-home {
+    ion-header {
+        .toolbar-title {
+            color: white;
+        }
+        .toolbar-background {
+            background-color: #222;
+        }
+        .toolbar-left {
+            color: #5AC1F1;
+        }
+        .menu-icon {
+            color: white;
+        }
+    }
+    ion-content {
+        color: #888 !important;
+        
+        .profile-training-streak {
+            text-align: center;
+            color: #000;
+            font-size: 18px;
+            margin-top:10px;
+            margin-bottom:10px;
+            strong {
+                margin-right: 25px;
+            }
+        }
+        .avatar{
+            min-height: 210px;
+            justify-content: center;
+            display: flex;
+        }
+        .profile-short {
+            padding: 12px;
+        }
+        .display-name {
+            font-size: 20px;
+            color: #888;
+        }
+        .subtext {
+            font-size: 14px;
+        }
+        .small{
+            font-size: 12px;
+            line-height: 20px;
+            min-height: 20px;
+            // padding: 2px 36px;
+            border-radius: 8px;
+            background-color: #F0F0F0;
+            width: 100%;
+        }
+        .hour-target {
+            font-size: 40px;
+            color: #323232;
+        }
+        .start-training {
+            padding: 20px 42px;
+        }
+        .current-session {
+            padding: 12px;
+            padding-top: 28px;
+            padding-bottom: 28px;
+            font-size: 24px;
+            border-radius: 8px;
+        }
+        .center{
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,96 @@
+ <ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" class="menu-icon"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <button ion-button class="toolbar-left" (click)="back()">
+        End Session
+      </button>
+    </ion-buttons>
+    <ion-title>{{ currentSectionType }}</ion-title>
+  </ion-navbar>
+</ion-header> 
+
+<ion-content>
+  <div class="alert alert-info text-center" style="margin-bottom:0px;" *ngIf="sockLevelCongrats">
+    <button type="button" class="close" (click)="sockLevelCongrats=null">&times;</button>
+    {{sockLevelCongrats}}
+  </div>  
+
+   <vg-player>
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <vg-controls>
+        <vg-play-pause></vg-play-pause>
+
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+
+        <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+
+    <video [vgMedia]="media" #media id="singleVideo" [src]="playerConfig.src" type="video/mp4">
+    </video>
+  </vg-player> 
+  <div style="padding: 24px;">
+    <ion-item no-lines no-padding>
+      <h2 style="font-weight: bold; white-space: normal;">{{ drill.title }}</h2>
+      <button item-right ion-button icon-only clear class="md-icon-button level-up" aria-label="Level Up" [disabled]="drillOptionIndex === (drillOptions.length - 1)" (click)="levelUp()" style="padding: 10px !important">
+        <ion-icon name="ios-arrow-up" aria-label="level-up" class="material-icons md-36 md-dark">
+        </ion-icon>
+      </button>
+      <button item-right ion-button icon-only clear class="md-icon-button level-down" aria-label="Level Down" [disabled]="drillOptionIndex === 0" (click)="levelDown()" style="padding: 10px !important">
+        <ion-icon name="ios-arrow-down" aria-label="level-down" class="material-icons md-36 md-dark">
+        </ion-icon>
+      </button>
+      <button item-right ion-button icon-only clear class="md-icon-button" aria-label="More Info" *ngIf="drill.moreInfo" (click)="showInfo()" style="padding: 10px !important; color: rgba(0, 0, 0, 0.54);">
+        <ion-icon name="ios-information-circle-outline" aria-label="more-info" class="material-icons md-36 md-dark">
+        </ion-icon>
+      </button>
+    </ion-item>
+
+    <p [innerHTML]="drill.description" flex style="margin: 0 !important;"></p>
+
+    
+  </div> 
+</ion-content>
+<ion-footer>
+  <ion-row class="drill-progress">
+      <ion-col col-2 layout-align="center center">
+          <div class="drill-time">{{ currentTime | secondsToMS:'seconds' }}</div>  
+      </ion-col>
+      <ion-col col-8 class="drill-bar" layout="column" layout-align="center center" flex>
+        <div class="drill-bar-total">
+          <div class="drill-bar-progress" [ngStyle]="drillProgress"></div>
+        </div>
+      </ion-col>
+      <ion-col col-2 layout="column" layout-align="center center">
+          <!-- <div class="drill-length">{{ remaining ? ((currentTime + remaining) | number : 0 | secondsToMS) : audioLength }}</div>   -->
+          <div class="drill-length">{{ maxSlide | secondsToMS:'seconds' }}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8>
+        <button ion-button full class="md-raised md-primary start-drill" (click)="startDrill()" *ngIf="!inProgress" flex>Start</button>
+        <button ion-button full class="md-raised md-primary start-drill" (click)="restartDrill()" *ngIf="inProgress" flex>Start Over</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button full class="md-raised" (click)="skipDrill()" color="darm">Skip</button>
+      </ion-col>
+    </ion-row>
+</ion-footer> 

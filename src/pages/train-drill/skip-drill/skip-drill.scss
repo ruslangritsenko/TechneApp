@@ -1,0 +1,22 @@
+page-skip-drill {
+  ion-content{
+    .scroll-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .md-dialog-content {
+      padding: 24px;
+    }
+    .skip-drill-list {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .skip-drill-list-item {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+}

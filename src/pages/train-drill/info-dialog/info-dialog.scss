@@ -1,0 +1,17 @@
+page-info-dialog {
+  ion-content{
+    .scroll-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.7);
+        text-align: center;
+    }
+    .md-dialog-content {
+      padding: 24px;
+    }
+  }
+}

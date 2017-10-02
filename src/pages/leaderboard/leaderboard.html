@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" class="menu-icon"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <button ion-button class="toolbar-left" (click)="back()">
+        Back
+      </button>
+    </ion-buttons>
+    <ion-title>Leaderboard</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar class="section-select md-whiteframe-1dp text-center" layout="column" layout-align="center center">
+    <ion-row class="tab-group" layout="row">
+      <ion-col class="tab-item" [ngClass]="{selected: leaderboardType=='all-time'}" layout="column" layout-align="center center" flex tappable (click)="setType('all-time')">
+        <div>All Time</div>
+      </ion-col>
+      <ion-col class="tab-item" [ngClass]="{selected: leaderboardType=='weekly'}" layout="column" layout-align="center center" flex tappable (click)="setType('weekly')">
+        <div>Weekly</div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content layout="column" flex>
+  <div *ngIf="!showScoreboard">
+    <div class="position" layout="column" *ngFor="let contender of hourContenders">
+      <ion-row class="entry" layout="row" layout-align="start center">
+        <div class="rank">{{ contender.rank }}</div>
+        <!-- <div class="profile-image" [ngStyle]="{backgroundImage: 'url(' + contender.avatar + ')',border: 'solid black 1px'}"></div> -->
+        <ion-col class="info" layout="column" layout-align="center start" flex no-padding>
+          <div  layout="row">
+            <div flex class="name">{{ contender.displayName }}</div>
+            <div class="verified" *ngIf="contender.verified">
+              <ion-icon name="md-checkmark" aria-label="verified" class="material-icons md-18"></ion-icon>
+            </div>
+          </div>
+          <div class="location" *ngIf="contender.country=='US'">{{ contender.city }}<span *ngIf="contender.state">{{ contender.stateName }}</span></div>
+          <div class="location" *ngIf="contender.country!='US'">{{ contender.city }}<span *ngIf="contender.countryName">{{ contender.countryName }}</span></div>
+        </ion-col>
+        <div item-end class="score" layout="column" layout-align="center center">
+          {{ contender.hours | hoursToHM }}
+        </div>
+      </ion-row>
+      <hr />
+    </div>
+    <div *ngIf="!hourContenders.length">
+      There are no entries.
+    </div>
+  </div>
+  
+</ion-content>

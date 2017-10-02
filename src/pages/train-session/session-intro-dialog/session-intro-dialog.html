@@ -1,0 +1,9 @@
+<ion-content layout="column" layout-align="center center" flex>
+  <div class="md-dialog-content" layout="column" layout-align="center center">
+     <img [src]="contentUrl" *ngIf="contentUrl" /> 
+     <div [innerHTML]="content"></div>
+  </div> 
+  <div class="start-session" layout="column">
+    <button class="md-raised md-primary md-button" style="color: white" (click)="submit()">Continue</button>
+  </div> 
+</ion-content>

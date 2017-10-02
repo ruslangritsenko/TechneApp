@@ -1,0 +1,150 @@
+page-leaderboard {
+  ion-header{
+    .toolbar-title {
+      color: white;
+    }
+    .toolbar-background {
+      background-color: #222;
+    }
+    .toolbar-left {
+      color: #5AC1F1;
+    }
+    .menu-icon {
+      color: white;
+    }
+    .section-select {
+      height: 44px;
+      color: #4E92DF;
+      font-size: 14px;
+      background-color: #F8F9F9;
+
+      .toolbar-background {
+        background-color: white;
+      }
+    }
+
+    .section-select .tab-group {
+      border: solid #4E92DF 1px;
+      border-radius: 5px;
+      height: 30px;
+    }
+
+    .section-select .tab-group {
+      border: solid #4E92DF 1px;
+      border-radius: 5px;
+      height: 30px;
+    }
+
+    .tab-group .tab-item {
+      cursor: pointer;
+    }
+
+    .tab-group .tab-item:not(:last-child) {
+      border-right: solid #4E92DF 1px;
+    }
+
+    .tab-group .tab-item.selected {
+      color: #FFFFFF;
+      background-color: #4E92DF;
+    }
+  }
+  ion-content{
+    
+    color: #888888;
+    .start-section {
+      width: 100%;
+      padding: 20px 42px;
+    }
+      
+    .center{
+      text-align: center;
+    }
+
+    .position {
+      margin-left: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-row{
+        width: 100%;
+      }
+    }
+
+    .entry {
+      padding: 5px 0;
+      color: #888888;
+      border-bottom: 1px solid #888888;
+    }
+
+    .rank {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+    .score {
+      margin-right: 15px;
+      font-size: 26px;
+      color: #1F1F1F;
+    }
+    .profile-image {
+      width: 50px;
+      min-width: 50px;
+      height: 50px;
+      border-radius: 24px;
+      background-size: cover;
+      background-position: 50% 50%;
+      margin: 0 10px;
+    }
+
+    .info {
+
+      padding-right: 5px;
+
+      .name {
+        font-weight: 700;
+        max-width: 100%;
+      }
+
+      .location {
+        max-width: 100%;
+      }
+
+      .verified {
+
+        background-color: #8DC2F4;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        margin-left: 5px;
+        float:left;
+
+        ion-icon {
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: 700;
+          height: 20px;
+        }
+
+      }
+
+    }
+
+    .info * {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .name {
+      font-weight: 700;
+      max-width: 100%;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      float: left;
+    }
+  }
+}

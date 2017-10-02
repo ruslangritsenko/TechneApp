@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" class="menu-icon"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <button ion-button class="toolbar-left" (click)="edit()">
+        Edit
+      </button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="authentication.user">
+    <div *ngIf="authentication.user.license.type === 'trial'" layout="row" layout-align="center center">
+        <button *ngIf="confirmEndingTrial == false" class="md-raised md-accent current-session" (click)="startEndTrial()">End Trial & Sign Up</button>
+        <button *ngIf="confirmEndingTrial" class="md-raised current-session" (click)="cancelEndTrial()">Cancel</button>
+        <button *ngIf="confirmEndingTrial" class="md-raised md-accent current-session" (click)="endTrial()">Confirm</button>
+    </div>
+    <div class="profile-training-streak">
+        <button ion-button no-padding class="md-fab md-super-mini md-mini md-primary" *ngIf="authentication.user.bestTrainingStreak <= 5" (click)="showHelp()">
+            ?
+        </button>
+        <strong>
+          Training Streak:
+        </strong> {{authentication.user.currentTrainingStreak}} day{{authentication.user.currentTrainingStreak !== 1 ? 's' : ''}}
+    </div>
+    <div layout="column" layout-align="center center" class="avatar" flex>
+        <div [ngStyle]="{height: '210px', width: '210px', backgroundImage: 'url(' + avatar200 + ')', backgroundSize: 'cover', borderRadius: '100px', border: 'solid black 5px'}"></div>
+    </div>
+    <ion-grid>
+        <ion-row class="profile-short">
+            <ion-col col-7 layout-align="center start" flex>
+                <span class="display-name" >{{authentication.user.displayName}}</span><br>
+                <span class="subtext">{{authentication.user.city}}, {{authentication.user.state}}</span>
+            </ion-col>
+            <ion-col col-5 layout-align="center end">
+                <div text-right>
+                    <button ion-button class="md-button high-score-btn" (click)="viewScores()">My High Scores</button>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="center" flex>
+                <div class="hour-target">{{ authentication.user.hoursLogged | hoursToHM }}</div>
+                <div class="subtext">Total Hours Trained</div>
+            </ion-col>
+            <ion-col class="center" flex>
+                <div class="hour-target">{{ authentication.user.weeklyHoursLogged | hoursToHM }}</div>
+                <div class="subtext">Weekly Hours Trained</div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12 class="start-training center">
+                <button ion-button class="md-raised md-primary current-session" style="width: 100%;" (click)="trainSession()">This Week's Session</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

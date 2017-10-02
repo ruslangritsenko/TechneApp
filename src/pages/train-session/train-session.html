@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" class="menu-icon"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <button ion-button class="toolbar-left" (click)="back()">
+        Back
+      </button>
+    </ion-buttons>
+    <ion-title *ngIf="!session.name">This Week's Session</ion-title>
+    <ion-title *ngIf="session.name">{{ session.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content layout="column" flex>
+  <div class="alert alert-info text-center" style="margin-bottom:0px;" *ngIf="sockLevelCongrats">
+    <button ion-button class="close" (click)="sockLevelCongrats=null">&times;</button>
+    {{sockLevelCongrats}}
+  </div>
+  <ion-toolbar class="section-select md-whiteframe-1dp text-center" layout="column" layout-align="center center" *ngIf="!session.hideSections">
+    <ion-row class="tab-group" layout="row">
+      <ion-col class="tab-item" [ngClass]="{selected: currentSectionType=='juggling'}" layout="column" layout-align="center center" flex tappable (click)="setSection('juggling')">
+        <div>Juggling</div>
+      </ion-col>
+      <ion-col class="tab-item" [ngClass]="{selected: currentSectionType=='dribbling'}" layout="column" layout-align="center center" flex tappable (click)="setSection('dribbling')">
+        <div>Dribbling</div>
+      </ion-col>
+      <ion-col class="tab-item" [ngClass]="{selected: currentSectionType=='wallwork'}" layout="column" layout-align="center center" flex tappable (click)="setSection('wallwork')">
+        <div>Wall Work</div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+  <div layout="column" layout-align="center center" flex>
+    <div class="drill-list" id="juggling" layout="column" *ngIf="currentSectionType=='juggling'" flex>
+      <ion-row class="drill-list-item" layout="row" *ngFor="let drillGroup of session.juggling.drill_groups; let i = index">
+        <ion-col col-3 class="centered-text">
+          {{i + 1}}
+        </ion-col>
+        <ion-col col-9>
+          <ion-item tappable (click)="goToDrill(i, drillGroup, 'juggling')" no-lines style="min-height: 3rem;">
+            <ion-label no-margin style="color: #337ab7; white-space: normal;">
+              {{ drillGroup.drills[drillGroup.defaultDrillIndex].title }}
+            </ion-label>
+            <button ion-button item-right *ngIf="i > 0 && currentSectionType == 'juggling' && currentDrillGroupIndex == i" class="md-raised md-small md-primary" style="margin: 0;">
+              <span *ngIf='i===0'>Start Here</span>
+              <span *ngIf='i!==0'>Resume</span>
+            </button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="drill-list" id="dribbling" layout="column" *ngIf="currentSectionType=='dribbling'" flex>
+      <ion-row class="drill-list-item" layout="row" *ngFor="let drillGroup of session.dribbling.drill_groups; let i = index">
+        <ion-col col-3 class="centered-text" flex="30">
+          {{i + 1}}
+        </ion-col>
+        <ion-col col-9>
+          <ion-item tappable (click)="goToDrill(i, drillGroup, 'dribbling')" no-lines style="min-height: 3rem;">
+            <ion-label no-margin style="color: #337ab7; white-space: normal;">
+              {{ drillGroup.drills[drillGroup.defaultDrillIndex].title }}
+            </ion-label>
+            <button ion-button item-right *ngIf="i > 0 && currentSectionType == 'dribbling' && currentDrillGroupIndex == i" class="md-raised md-small md-primary" style="margin: 0;">
+              <span *ngIf='i===0'>Start Here</span>
+              <span *ngIf='i!==0'>Resume</span>
+            </button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="drill-list" id="wallwork" layout="column" *ngIf="currentSectionType=='wallwork'" flex>
+      <ion-row class="drill-list-item" layout="row" *ngFor="let drillGroup of session.wallwork.drill_groups; let i = index">
+        <ion-col col-3 class="centered-text">
+          {{i + 1}}
+        </ion-col>
+        <ion-col col-9>
+          <ion-item tappable (click)="goToDrill(i, drillGroup, 'wallwork')" no-lines style="min-height: 3rem;">
+            <ion-label no-margin style="color: #337ab7; white-space: normal;">
+              {{ drillGroup.drills[drillGroup.defaultDrillIndex].title }}
+            </ion-label>
+            <button ion-button item-right *ngIf="i > 0 && currentSectionType == 'wallwork' && currentDrillGroupIndex == i" class="md-raised md-small md-primary" style="margin: 0;">
+              <span *ngIf='i===0'>Start Here</span>
+              <span *ngIf='i!==0'>Resume</span>
+            </button>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <ion-row>
+    <ion-col col-12>
+      <div class="start-section text-center" layout="column">
+        <button ion-button class="md-raised md-primary" style="width: 100%;" (click)="startSection()" *ngIf="sessionlength !== 10">Begin Section</button>
+        <button ion-button class="md-raised md-primary" style="width: 100%;" (click)="startSection()" *ngIf="sessionlength === 10">Repeat Section</button>    
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

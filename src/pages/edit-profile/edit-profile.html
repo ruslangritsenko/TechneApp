@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" class="menu-icon"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <button ion-button class="toolbar-left" (click)="back()">
+        Back
+      </button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div layout="column" layout-align="center center" style="margin-top:20px;min-height:210px;" flex>
+        <div layout="column" layout-align="end end" [ngStyle]="{height: '210px', width: '210px', backgroundImage: 'url(' + avatar200 + ')', backgroundSize: 'cover', borderRadius: '100px', border: 'solid black 5px', position: 'relative', marginLeft: 'auto', marginRight: 'auto' }">
+            <button color="dark" ion-button class="md-button md-fab md-mini bottom right" aria-label="Edit" (click)="showEditProfilePictureDialog()">
+                <ion-icon name="md-create" class="material-icons md-24 md-light"></ion-icon>
+            </button>
+        </div>
+    </div>
+    <form name="userForm" layout="column" layout-align="center stretch" (ngSubmit)="updateUserProfile()" class="edit-profile" novalidate autocomplete="off">
+        <ion-row>
+            <ion-col no-padding>
+                <ion-item>
+                    <ion-label floating>First Name *</ion-label>
+                    <ion-input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col no-padding>
+                <ion-item no-padding>
+                    <ion-label floating>Last Name *</ion-label>
+                    <ion-input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-item>
+            <ion-label floating>Email *</ion-label>
+            <ion-input type="text" id="email" name="email" [(ngModel)]="user.email" required></ion-input>
+        </ion-item>
+        <div padding style="font-size: 20px;">Mailing Address:</div>
+        <ion-item>
+            <ion-label floating>Street</ion-label>
+            <ion-input type="text" id="street" name="street" [(ngModel)]="user.street"></ion-input>
+        </ion-item>
+
+        <ion-row>
+            <ion-col col-5 no-padding>
+                <ion-item>
+                    <ion-label floating>City</ion-label>
+                    <ion-input type="text" id="city" name="city" [(ngModel)]="user.city"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-4 no-padding *ngIf="user.country != 'US'">
+                <ion-item no-padding>
+                    <ion-label floating>State</ion-label>
+                    <ion-input type="text" id="state" name="state" [(ngModel)]="user.state"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-4 no-padding *ngIf="user.country == 'US'">
+                <ion-item no-padding>
+                     <ion-label floating>State</ion-label> 
+                     <ion-select id="state" name="state" [(ngModel)]="user.state"> 
+                         <ion-option *ngFor="let item of usStateList | keys" [value]="item.key" >{{ item.value }}</ion-option> 
+                     </ion-select> 
+                </ion-item>
+            </ion-col>
+            <ion-col col-3 no-padding>
+                <ion-item no-padding>
+                    <ion-label floating>Zip</ion-label>
+                    <ion-input type="text" id="zip" name="zip" [(ngModel)]="user.zip"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-item>
+            <ion-label floating>Country</ion-label>
+            <ion-select id="country" name="country" [(ngModel)]="user.country"> 
+                <ion-option *ngFor="let item of countryList | keys" [value]="item.key" >{{ item.value }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Time Zone</ion-label>
+            <ion-select id="timezone" name="timezone" [(ngModel)]="user.timezone">
+                <ion-option *ngFor="let item of timezoneList | keys" [value]="item.key">{{ item.value }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-row>
+            <ion-col col-6 no-padding>
+                <ion-item>
+                    <ion-label floating>Sock Size</ion-label>
+                    <ion-select id="sockSize" name="sockSize" [(ngModel)]="user.sockSize">
+                        <ion-option value="S">S (men's 3.5-5.5/ women's 5-7)</ion-option>
+                        <ion-option value="M">M (men's 6-8/women's 7.5-9.5)</ion-option>
+                        <ion-option value="L">L (men's 8.5-10.5/women's 10-12)</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6 no-padding>
+                <ion-item no-padding>
+                    <ion-label floating>T-Shirt Size (Unisex)</ion-label>
+                    <ion-select id="tShirtSize" name="tShirtSize" [(ngModel)]="user.tShirtSize">
+                        <ion-option value="XS">XS</ion-option>
+                        <ion-option value="S">S</ion-option>
+                        <ion-option value="M">M</ion-option>
+                        <ion-option value="L">L</ion-option>
+                        <ion-option value="XL">XL</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <div padding>
+            *Sock sizes are based on U.S. shoe sizes<br />
+            *T-shirt sizes are unisex
+            <button ion-button full block type="submit" class="md-primary md-raised">Update</button>
+            <div *ngIf="errtxt" class="center alert alert-danger">
+                <strong>{{ errtxt }}</strong>
+            </div>
+        </div>
+    </form>
+</ion-content>

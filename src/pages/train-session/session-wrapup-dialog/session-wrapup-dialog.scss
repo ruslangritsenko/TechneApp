@@ -1,0 +1,14 @@
+page-session-wrapup-dialog {
+  ion-content{
+    .scroll-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .md-dialog-content {
+      padding: 24px;
+    }
+  }
+}

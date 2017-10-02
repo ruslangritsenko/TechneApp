@@ -1,0 +1,25 @@
+<ion-content class="modal-content">
+        <div class="form-group text-center">
+            <span *ngIf="imageDataURL">
+                <img [src]="imageDataURL" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture">
+            </span>
+            <span *ngIf="!imageDataURL">
+                <img [src]="avatar200" alt="{{user.displayName}}" class="img-thumbnail user-profile-picture">
+            </span>
+        </div>
+        <div class="text-center form-group" *ngIf="!imageDataURL">
+            <button ion-button style="border: 1px solid #adadad;" color="light" (click)="selectImage()">
+                Select Image
+            </button>
+        </div>
+        <div class="text-center form-group" *ngIf="imageDataURL">
+            <button ion-button color="primary" class="btn" (click)="uploadProfilePicture()">Upload</button>
+            <button ion-button class="btn btn-default" (click)="cancelUpload()">Cancel</button>
+        </div>
+        <div *ngIf="errtxt" class="text-center alert alert-success">
+            <strong>Profile Picture Changed Successfully</strong>
+        </div>
+        <div *ngIf="errtxt" class="text-center alert alert-danger">
+            <strong>{{ errtxt }}</strong>
+        </div>
+</ion-content>

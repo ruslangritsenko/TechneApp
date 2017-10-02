@@ -1,0 +1,27 @@
+<ion-content>
+    <div class="login-form-holder">
+        <img src="assets/img/techne-logo.png" height="200" style="    margin-bottom: 20px;"/>
+        <br />
+        <form class="user-form" name="userForm" novalidate (ngSubmit)="signin()">
+            <div md-no-float class="md-input-container">
+                <input (change)="insertEmail()" name="username" [(ngModel)]="credentials.username" id="username" placeholder="Email" required autofocus type="email">
+                <div *ngIf="!emailvalid">
+                  <div class="error" ng-message="required">Email is required.</div>
+                </div>
+            </div>
+            <div md-no-float class="md-input-container">
+                <input (change)="insertPass()" name="password" [(ngModel)]="credentials.password" id="password" placeholder="Password" required type="password">
+                <div *ngIf="!passvalid">
+                    <div class="error" ng-message="required">Password is required.</div>
+                </div>
+            </div>
+            <button ion-button type="submit" class="md-raised md-primary">Login</button>
+            <div *ngIf="errtxt" class="alert alert-danger center">
+                {{ errtxt }}
+            </div>
+            <ion-label tappable class="forgot-password" (click)="forgotPass()">
+                Forgot your password?
+            </ion-label>
+        </form>
+    </div>
+</ion-content>

@@ -1,0 +1,40 @@
+page-transition-dialog {
+  ion-header{
+    .toolbar-background{
+      color: white;
+      background-color: rgba(0, 0, 0, .7);
+      text-align: center;
+    }
+    .toolbar-title{
+      color: white;
+    }
+  }
+  ion-content{
+    
+    .scroll-content{
+      color: white;
+      background-color: rgba(0, 0, 0, .7);
+      text-align: center;
+    }
+    .md-dialog-content {
+      padding: 24px;
+    }
+
+    .md-block{
+      border-radius: 8px;
+      width: 80%;
+      max-width: 320px;
+      margin: 0;
+      padding: 0;
+      margin-left: auto;
+    margin-right: auto;
+
+      ion-input {
+        background-color: #FFF;
+        border-radius: 8px;
+        height: 45px;
+        padding-left: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="menu" class="menu-icon"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <button ion-button class="toolbar-left" (click)="back()">
+        Back
+      </button>
+    </ion-buttons>
+    <ion-title>Scores</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar class="section-select md-whiteframe-1dp" layout="column" layout-align="center center">
+    <ion-row class="tab-group" layout="row">
+      <ion-col class="tab-item" [ngClass]="{selected: currentSectionType=='juggling'}" layout="column" layout-align="center center" flex tappable (click)="setSection('juggling')">
+        <div>Juggling</div>
+      </ion-col>
+      <ion-col class="tab-item" [ngClass]="{selected: currentSectionType=='dribbling'}" layout="column" layout-align="center center" flex tappable (click)="setSection('dribbling')">
+        <div>Dribbling</div>
+      </ion-col>
+      <ion-col class="tab-item" [ngClass]="{selected: currentSectionType=='wallwork'}" layout="column" layout-align="center center" flex tappable (click)="setSection('wallwork')">
+        <div>Wall Work</div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div layout="column" flex>
+    <div layout="column" layout-align="start center" flex>
+      <div class="drill-list" id="juggling" *ngIf="currentSectionType=='juggling'">
+        <ion-row class="drill-list-item" layout="row" *ngFor="let score of juggling">
+          <ion-col col-8>
+            {{ score.title }}
+          </ion-col>
+          <ion-col col-4 class="right-text">
+            {{ score.points ? score.points : '-' }}
+          </ion-col>
+        </ion-row>
+      </div>
+      <div class="drill-list" id="dribbling" *ngIf="currentSectionType=='dribbling'">
+        <ion-row class="drill-list-item" layout="row" *ngFor="let score of dribbling">
+          <ion-col col-8>
+            {{ score.title }}
+          </ion-col>
+          <ion-col col-4 class="right-text">
+            {{ score.points ? score.points : '-' }}
+          </ion-col>
+        </ion-row>
+      </div>
+      <div class="drill-list" id="wallwork" *ngIf="currentSectionType=='wallwork'">
+        <ion-row class="drill-list-item" layout="row" *ngFor="let score of wallwork">
+          <ion-col col-8>
+            {{ score.title }}
+          </ion-col>
+          <ion-col col-4 class="right-text">
+            {{ score.points ? score.points : '-' }}
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div> 
+</ion-content>

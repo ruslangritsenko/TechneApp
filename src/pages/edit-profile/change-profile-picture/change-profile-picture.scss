@@ -1,0 +1,31 @@
+page-change-profile-picture {
+
+    top: 33% !important;
+    width: 240px !important;
+    height: 270px !important;
+    left: 0 !important;
+    right: 0;
+    top: 0 !important;
+    bottom: 0;
+    margin: auto;
+    border-radius: 5px !important;
+
+    ion-content{
+        
+        .user-profile-picture {
+            height: 210px;
+            width: 210px;
+            object-fit: cover;
+        }
+        .img-thumbnail {
+            display: inline-block;
+            max-width: 100%;
+            // height: auto;
+            padding: 4px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    }
+}

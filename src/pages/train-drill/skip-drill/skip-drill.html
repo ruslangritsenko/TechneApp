@@ -1,0 +1,19 @@
+<ion-content layout="column" layout-align="center center" flex>
+  <div class="md-dialog-content" layout="column" layout-align="center center" style="padding-bottom:15px;padding-top:15px;">
+    No training time will be recorded for the current exercise.
+  </div>
+  <div class="row" flex>
+    <button ion-button type="submit" class="md-raised" (click)="submit(-1)" color="light">Cancel</button>
+    <button ion-button class="md-raised md-primary" (click)="submit(currentIndex + 1)">Next</button>
+  </div>
+  <div class="skip-drill-list">
+    <div class="skip-drill-list-item" *ngFor="let drillGroup of drillGroups; let i = index;">
+      <strong *ngIf="currentIndex == i">
+        *{{drillGroup.drills[drillGroup.defaultDrillIndex].title}}
+      </strong>
+      <a *ngIf="currentIndex != i" (click)="submit(i)">
+        {{ drillGroup.drills[drillGroup.defaultDrillIndex].title }}
+      </a>
+    </div>
+  </div>
+</ion-content>

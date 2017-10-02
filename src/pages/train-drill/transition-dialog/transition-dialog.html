@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ getCurrentSectionType() }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content layout="column" layout-align="center center" flex>
+  <form name="drillScoreForm" flex>
+    
+    <div class="md-dialog-content" layout="column" layout-align="center center" *ngIf="currentDrill.audioType === 'Scored'">
+      <h2>'{{ currentDrill.title }}' Complete!</h2>
+      <p>Good job! Please input your score if you have one to report. If you set a personal best, your score will update in "My High Scores."</p>
+      <p>Ready for the next exercise? If you choose to repeat this one, your time from the last attempt will still be added to your training log.</p>
+      <ion-item md-no-float class="md-block">
+        <ion-input type="number" name="points" id="points" [(ngModel)]="points" placeholder="Score"></ion-input>
+      </ion-item>
+    </div>
+    <div class="md-dialog-content" layout="column" layout-align="center center" *ngIf="currentDrill.audioType !== 'Scored'">
+      <h2>'{{ currentDrill.title }}' Complete!</h2>
+      <p>Good job! Ready for the next exercise? If you choose to repeat this one, your time from the last attempt will still be added to your training log.</p>
+    </div>
+    <div class="row" flex style="display : block;">
+      <button ion-button icon-left class="md-raised" (click)="submit('repeat')" color="light">
+        <ion-icon name="ios-refresh"></ion-icon> Repeat
+      </button>
+      <button ion-button type="submit" class="md-raised md-primary" (click)="submit('continue')">Continue</button>
+    </div>
+  </form>
+</ion-content>
